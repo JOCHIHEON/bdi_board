@@ -18,7 +18,15 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO bdao = new BoardDAOImpl();
 	@Override
 	public void selectBoard(HttpServletRequest req) throws SQLException, ServletException {
-		
+		BoardInfoVO bi = ParseUtil.parseRequest(req, BoardInfoVO.class);
+		bdao.setCon(DBCon.getCon());
+		try {
+			req.setAttribute("bi", bdao.selectBoard(bi));
+		} catch(SQLException e){
+			throw e;
+		} finally {
+			DBCon.close();
+		}
 	}
 
 	@Override

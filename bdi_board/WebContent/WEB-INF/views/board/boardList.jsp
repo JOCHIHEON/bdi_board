@@ -21,8 +21,8 @@
 				<c:forEach items="${biList}" var="bi">
 					<tr>
 						<td>${bi.binum}</td>
-						<td>${bi.bititle}</td>
-						<td>${bi.bicredate}</td>
+						<td><a href="/board/boardView?binum=${bi.binum}">${bi.bititle}</a></td>
+						<td>${bi.bicredat}</td>
 						<td>${bi.bicnt}</td>
 						<td>${bi.uinum}</td>
 					</tr>

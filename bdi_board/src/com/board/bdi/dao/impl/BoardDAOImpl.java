@@ -81,7 +81,32 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 	@Override
 	public BoardInfoVO selectBoard(BoardInfoVO bi) throws SQLException {
-		// TODO Auto-generated method stub
+		String sql = "select bi.*, ui.uiname from board_info bi,\r\n" + 
+				"user_info ui\r\n" + 
+				"where \r\n" + 
+				"ui.uinum = bi.uinum\r\n" + 
+				"and bi.binum=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bi.getBinum());
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				bi = new BoardInfoVO();
+				bi.setBinum(rs.getInt("binum"));
+				bi.setBititle(rs.getString("bititle"));
+				bi.setBitext(rs.getString("bitext"));
+				bi.setBifile(rs.getString("bifile"));
+				bi.setBicredat(rs.getString("bicredat"));
+				bi.setBimoddat(rs.getString("bimoddat"));
+				bi.setBicnt(rs.getInt("bicnt"));
+				bi.setUiname(rs.getString("uiname"));
+				return bi;
+			}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			close();
+		}
 		return null;
 	}
 

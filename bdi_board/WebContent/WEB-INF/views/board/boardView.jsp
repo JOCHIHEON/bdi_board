@@ -21,20 +21,20 @@
 					</div>
 					<div class="form-group"> <!-- Subject field -->
 						<label class="control-label " for="bititle">제목</label>
-						<input class="form-control" id="bititle" name="bititle" type="text"/>
+						<input class="form-control" id="bititle" name="bititle" value="${bi.bititle}" type="text"disabled/>
 					</div>
 					
 					<div class="form-group"> <!-- Message field -->
 						<label class="control-label " for="bitext">내용</label>
-						<textarea class="form-control" cols="40" id="bitext" name="bitext" rows="10"></textarea>
+						<textarea class="form-control" cols="40" id="bitext" name="bitext" rows="10" disabled>${bi.bitext}</textarea>
 					</div>
 					<div class="form-group"> <!-- Message field -->
 						<label class="control-label " for="bifile">파일</label>
-						<input class="form-control" id="bifile" name="bifile" type="file"/>
+						<input class="form-control" id="bifile" name="bifile" type="file">
+						<img src="">
 					</div>
 					<div class="form-group">
-						<button class="btns btn-primary " name="submit" type="submit">등록</button>
-						<button class="btn" data-page="/board/boardList">취소</button>
+						<button class="btn" data-page="/board/boardList">리스트로 돌아가기</button>
 					</div>
 					<input type="hidden" name="uinum" value="${user.uinum}">
 				</form>								

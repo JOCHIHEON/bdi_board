@@ -25,6 +25,8 @@ public class BoardServlet extends HttpServlet {
 		try {
 			if(cmd.equals("boardList")) {
 				bs.selectBoardList(request);
+			}else if(cmd.equals("boardView")) {
+				bs.selectBoard(request);
 			}
 		} catch (SQLException e) {
 			throw new ServletException("에러: " + e.getMessage());
