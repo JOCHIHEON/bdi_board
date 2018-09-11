@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.board.bdi.dao.BoardDAO;
-import com.board.bdi.vo.BoardInfoVo;
+import com.board.bdi.vo.BoardInfoVO;
 
 public class BoardDAOImpl implements BoardDAO {
 	private Connection con;
@@ -20,26 +20,39 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int insertBoard(BoardInfoVo bi) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int insertBoard(BoardInfoVO bi) throws SQLException {
+		String sql = "insert into board_info(bititle, bitext,bicredat, "
+				+ "bimoddat,bicnt, biactive, uinum,bifile)";
+		sql += " values(?,?,now(),now(),0,1,?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, bi.getBititle());
+			ps.setString(2, bi.getBitext());
+			ps.setInt(3, bi.getUinum());
+			ps.setString(4, bi.getBifile());
+			return ps.executeUpdate();
+		}catch(SQLException e) {
+			throw e;
+		}finally {
+			close();
+		}
 	}
 
 	@Override
-	public List<BoardInfoVo> selectBoardList(BoardInfoVo bi) throws SQLException {
+	public List<BoardInfoVO> selectBoardList(BoardInfoVO bi) throws SQLException {
 		String sql = "select * from board_info";
-		List<BoardInfoVo> biList = new ArrayList<BoardInfoVo>();
+		List<BoardInfoVO> biList = new ArrayList<BoardInfoVO>();
 		try {
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				bi = new BoardInfoVo();
+				bi = new BoardInfoVO();
 				bi.setBinum(rs.getInt("binum"));
 				bi.setBititle(rs.getString("bititle"));
 				bi.setBitext(rs.getString("bitext"));
 				bi.setBifile(rs.getString("bifile"));
 				bi.setBicredat(rs.getString("bicredat"));
-				bi.setBimodat(rs.getString("bimodat"));
+				bi.setBimoddat(rs.getString("bimoddat"));
 				bi.setBicnt(rs.getInt("bicnt"));
 				biList.add(bi);
 			}
@@ -67,7 +80,7 @@ public class BoardDAOImpl implements BoardDAO {
 		}
 	}
 	@Override
-	public BoardInfoVo selectBoard(BoardInfoVo bi) throws SQLException {
+	public BoardInfoVO selectBoard(BoardInfoVO bi) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
 	}

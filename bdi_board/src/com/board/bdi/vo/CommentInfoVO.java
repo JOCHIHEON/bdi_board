@@ -29,7 +29,7 @@ public class CommentInfoVO implements Serializable {
 	private UserInfoVo userInfo;
 
 	/** 게시판정보. */
-	private BoardInfoVo boardInfo;
+	private BoardInfoVO boardInfo;
 
 	/**
 	 * 생성자.
@@ -138,7 +138,7 @@ public class CommentInfoVO implements Serializable {
 	 * @param boardInfo
 	 *            게시판정보
 	 */
-	public void setBoardInfo(BoardInfoVo boardInfo) {
+	public void setBoardInfo(BoardInfoVO boardInfo) {
 		this.boardInfo = boardInfo;
 	}
 
@@ -147,7 +147,7 @@ public class CommentInfoVO implements Serializable {
 	 * 
 	 * @return 게시판정보
 	 */
-	public BoardInfoVo getBoardInfo() {
+	public BoardInfoVO getBoardInfo() {
 		return this.boardInfo;
 	}
 

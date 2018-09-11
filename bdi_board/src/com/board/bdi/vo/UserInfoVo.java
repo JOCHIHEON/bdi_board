@@ -31,7 +31,7 @@ public class UserInfoVo implements Serializable {
 	private String uiemail;
 
 	/** 게시판정보 목록. */
-	private Set<BoardInfoVo> boardInfoSet;
+	private Set<BoardInfoVO> boardInfoSet;
 
 	/** 댓글정보 목록. */
 	private Set<CommentInfoVO> commentInfoSet;
@@ -40,7 +40,7 @@ public class UserInfoVo implements Serializable {
 	 * 생성자.
 	 */
 	public UserInfoVo() {
-		this.boardInfoSet = new HashSet<BoardInfoVo>();
+		this.boardInfoSet = new HashSet<BoardInfoVO>();
 		this.commentInfoSet = new HashSet<CommentInfoVO>();
 	}
 
@@ -145,7 +145,7 @@ public class UserInfoVo implements Serializable {
 	 * @param boardInfoSet
 	 *            게시판정보 목록
 	 */
-	public void setBoardInfoSet(Set<BoardInfoVo> boardInfoSet) {
+	public void setBoardInfoSet(Set<BoardInfoVO> boardInfoSet) {
 		this.boardInfoSet = boardInfoSet;
 	}
 
@@ -155,7 +155,7 @@ public class UserInfoVo implements Serializable {
 	 * @param boardInfo
 	 *            게시판정보
 	 */
-	public void addBoardInfo(BoardInfoVo boardInfo) {
+	public void addBoardInfo(BoardInfoVO boardInfo) {
 		this.boardInfoSet.add(boardInfo);
 	}
 
@@ -164,7 +164,7 @@ public class UserInfoVo implements Serializable {
 	 * 
 	 * @return 게시판정보 목록
 	 */
-	public Set<BoardInfoVo> getBoardInfoSet() {
+	public Set<BoardInfoVO> getBoardInfoSet() {
 		return this.boardInfoSet;
 	}
 

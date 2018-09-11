@@ -4,11 +4,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.board.bdi.vo.BoardInfoVo;
+import com.board.bdi.vo.BoardInfoVO;
 
 public interface BoardDAO {
 	public void setCon(Connection con);
-	public int insertBoard(BoardInfoVo bi) throws SQLException;
-	public BoardInfoVo selectBoard(BoardInfoVo bi)throws SQLException;
-	public List<BoardInfoVo> selectBoardList(BoardInfoVo bi)throws SQLException;
+	public int insertBoard(BoardInfoVO bi) throws SQLException;
+	public BoardInfoVO selectBoard(BoardInfoVO bi)throws SQLException;
+	public List<BoardInfoVO> selectBoardList(BoardInfoVO bi)throws SQLException;
 }

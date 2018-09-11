@@ -18,9 +18,9 @@
 					<td colspan="5">게시물이 없습니다.</td> 
 				</tr>
 			</c:if>
-				<c:forEach items="${biList }" var="bi">
+				<c:forEach items="${biList}" var="bi">
 					<tr>
-						<td>${bi.num}</td>
+						<td>${bi.binum}</td>
 						<td>${bi.bititle}</td>
 						<td>${bi.bicredate}</td>
 						<td>${bi.bicnt}</td>
