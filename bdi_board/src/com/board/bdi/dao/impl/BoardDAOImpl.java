@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.board.bdi.dao.BoardDAO;
 import com.board.bdi.vo.BoardInfoVO;
+import com.board.bdi.vo.CommentInfoVO;
 
 public class BoardDAOImpl implements BoardDAO {
 	private Connection con;
@@ -54,6 +55,7 @@ public class BoardDAOImpl implements BoardDAO {
 				bi.setBicredat(rs.getString("bicredat"));
 				bi.setBimoddat(rs.getString("bimoddat"));
 				bi.setBicnt(rs.getInt("bicnt"));
+				
 				biList.add(bi);
 			}
 			return biList;
@@ -109,5 +111,83 @@ public class BoardDAOImpl implements BoardDAO {
 		}
 		return null;
 	}
+	
 
+	@Override
+	public int updateBoardCnt(BoardInfoVO bi) throws SQLException {
+		String sql = "update board_info set bicnt = bicnt+1 where binum=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, bi.getBinum());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			close();
+		}
+	}
+
+	@Override
+	public int insertComment(CommentInfoVO ci) throws SQLException {
+		String sql = "insert into comment_info(citext,cicredat,cimodat,binum,uinum)";
+		sql += " values(?,now(),now(),?,?)";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, ci.getCitext());
+			ps.setInt(2, ci.getBinum());
+			ps.setInt(3, ci.getUinum());
+			return ps.executeUpdate();
+		}catch(SQLException e) {
+			throw e;
+		}finally {
+			close();
+		}
+	}
+
+	@Override
+	public CommentInfoVO selectBoard(CommentInfoVO ci) throws SQLException {
+		return null;
+	}
+
+	@Override
+	public List<CommentInfoVO> selectCommentList(CommentInfoVO ci) throws SQLException {
+		String sql = "select ci.*,ui.uiname from comment_info ci,user_info ui\r\n" + 
+				"where ui.uinum=ci.uinum and binum=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ci.getBinum());
+			rs = ps.executeQuery();
+			List<CommentInfoVO> ciList = new ArrayList<CommentInfoVO>();
+			while(rs.next()) {
+				ci = new CommentInfoVO();
+				ci.setCinum(rs.getInt("cinum"));
+				ci.setBinum(rs.getInt("binum"));
+				ci.setCicredat(rs.getString("cicredat"));
+				ci.setCimodat(rs.getString("cimodat"));
+				ci.setCitext(rs.getString("citext"));
+				ci.setUinum(rs.getInt("uinum"));
+				ci.setUiname(rs.getString("uiname"));
+				ciList.add(ci);
+			}
+			return ciList;
+		} catch (SQLException e) {
+			throw e;
+		}finally {
+			close();
+		}
+	}
+
+	@Override
+	public int deleteComment(CommentInfoVO ci) throws SQLException {
+		String sql = "delete from comment_info where cinum=?";
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, ci.getCinum());
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			close();
+		}
+	}
 }

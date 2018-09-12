@@ -22,18 +22,40 @@ public class CommentInfoVO implements Serializable {
 	/** 댓글등록일. */
 	private String cicredat;
 
+
+	public Integer getUinum() {
+		return uinum;
+	}
+
+	public void setUinum(Integer uinum) {
+		this.uinum = uinum;
+	}
+
+	public Integer getBinum() {
+		return binum;
+	}
+
+	public void setBinum(Integer binum) {
+		this.binum = binum;
+	}
+
+	public String getUiname() {
+		return uiname;
+	}
+
+	public void setUiname(String uiname) {
+		this.uiname = uiname;
+	}
+
 	/** 댓글수정일. */
 	private String cimodat;
 
-	/** 유저정보. */
-	private UserInfoVo userInfo;
-
-	/** 게시판정보. */
-	private BoardInfoVO boardInfo;
-
-	/**
-	 * 생성자.
-	 */
+	private Integer uinum;
+	
+	private Integer binum;
+	
+	private String uiname;
+	
 	public CommentInfoVO() {
 	}
 
@@ -114,44 +136,6 @@ public class CommentInfoVO implements Serializable {
 	}
 
 	/**
-	 * 유저정보을 설정합니다..
-	 * 
-	 * @param userInfo
-	 *            유저정보
-	 */
-	public void setUserInfo(UserInfoVo userInfo) {
-		this.userInfo = userInfo;
-	}
-
-	/**
-	 * 유저정보을 가져옵니다..
-	 * 
-	 * @return 유저정보
-	 */
-	public UserInfoVo getUserInfo() {
-		return this.userInfo;
-	}
-
-	/**
-	 * 게시판정보을 설정합니다..
-	 * 
-	 * @param boardInfo
-	 *            게시판정보
-	 */
-	public void setBoardInfo(BoardInfoVO boardInfo) {
-		this.boardInfo = boardInfo;
-	}
-
-	/**
-	 * 게시판정보을 가져옵니다..
-	 * 
-	 * @return 게시판정보
-	 */
-	public BoardInfoVO getBoardInfo() {
-		return this.boardInfo;
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -189,8 +173,7 @@ public class CommentInfoVO implements Serializable {
 
 	@Override
 	public String toString() {
-		return "CommentInfoVo [cinum=" + cinum + ", citext=" + citext + ", cicredat=" + cicredat + ", cimodat="
-				+ cimodat + ", userInfo=" + userInfo + ", boardInfo=" + boardInfo + "]";
+		return "CommentInfoVO [cinum=" + cinum + ", citext=" + citext + ", cicredat=" + cicredat + ", cimodat="
+				+ cimodat + ", uinum=" + uinum + ", binum=" + binum + ", uiname=" + uiname + "]";
 	}
-
 }
