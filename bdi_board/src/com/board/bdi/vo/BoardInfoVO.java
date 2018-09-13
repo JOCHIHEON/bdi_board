@@ -41,7 +41,20 @@ public class BoardInfoVO implements Serializable {
 	
 	private String uiname;
 	
+	private PageInfo pi;
 	
+	public PageInfo getPi() {
+		return pi;
+	}
+	
+	public BoardInfoVO() {
+		pi = new PageInfo();
+	}
+	
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
+	}
+
 	public String getUiname() {
 		return uiname;
 	}

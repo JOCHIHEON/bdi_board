@@ -41,10 +41,15 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<BoardInfoVO> selectBoardList(BoardInfoVO bi) throws SQLException {
-		String sql = "select * from board_info";
+		String sql = "select bi.*,ui.uiname from board_info bi, user_info ui\r\n" + 
+				"where bi.UINUM = ui.uinum\r\n" + 
+				"order by binum desc\r\n" + 
+				"limit ?,?";
 		List<BoardInfoVO> biList = new ArrayList<BoardInfoVO>();
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, bi.getPi().getLimitFNum());
+			ps.setInt(2, bi.getPi().getLimitLNum());
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				bi = new BoardInfoVO();
@@ -55,7 +60,7 @@ public class BoardDAOImpl implements BoardDAO {
 				bi.setBicredat(rs.getString("bicredat"));
 				bi.setBimoddat(rs.getString("bimoddat"));
 				bi.setBicnt(rs.getInt("bicnt"));
-				
+				bi.setUiname(rs.getString("uiname"));
 				biList.add(bi);
 			}
 			return biList;
@@ -189,5 +194,21 @@ public class BoardDAOImpl implements BoardDAO {
 		} finally {
 			close();
 		}
+	}
+
+	@Override
+	public int countBoardList() throws SQLException {
+		String sql = "select count(*) from board_info bi, user_info ui\r\n" + 
+				"where bi.uinum = ui.uinum";
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		}catch(SQLException e) {
+			throw e;
+		}
+		return 0;
 	}
 }
