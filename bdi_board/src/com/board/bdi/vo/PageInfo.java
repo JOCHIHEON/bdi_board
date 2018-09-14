@@ -2,9 +2,9 @@ package com.board.bdi.vo;
 
 public class PageInfo {
 	private Integer page = 1;		//
-	private Integer rowCnt = 10;	//
-	private Integer blockCnt = 10;	//
-	private Integer totalCnt;		//
+	private Integer rowCnt = 10;	// 보여질 게시물 갯수
+	private Integer blockCnt = 10;	// 블락 갯수
+	private Integer totalCnt;		// 게시물 갯수 
 	private Integer limitFNum = 0;	// First
 	private Integer limitLNum = 10;	// Last
 
