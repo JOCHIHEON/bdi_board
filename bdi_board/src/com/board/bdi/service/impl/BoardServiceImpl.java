@@ -45,7 +45,6 @@ public class BoardServiceImpl implements BoardService {
 			PageInfo pi = bi.getPi();
 			pi.setTotalCnt(bdao.countBoardList());
 			pi.pageCount();
-			
 			req.setAttribute("pi", bi.getPi());
 			req.setAttribute("biList", bdao.selectBoardList(bi));
 		} catch(SQLException e){
