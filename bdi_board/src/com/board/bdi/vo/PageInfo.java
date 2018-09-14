@@ -6,7 +6,7 @@ public class PageInfo {
 	private Integer blockCnt = 10;	// 1 페이지에 보여질 블락 수
 	private Integer totalCnt;		// 총 게시물 수
 	private Integer limitFNum = 0;	// 현재 보여질 게시물 시작번호
-	private Integer limitLNum = 10;	// 현재 보여질 게시물 시작부터 보여질 게시물 수
+	private Integer limitLNum = 10;	// 현재 보여질 게시물 시작부터 보여줄 게시물 수
 
 	private Integer totalPage; 		// 총 페이지 수
 	private Integer totalBlock;		// 총 블락 수
