@@ -36,7 +36,7 @@
 		</table>
 		<div class="page">
 		<c:if test="${pi.sBlock != 1}">
-			<a href="/board/boardList?pi.page=${pi.sBlock-pi.blockCnt}"> << </a>
+			<a href="/board/boardList?pi.page=${pi.sBlock-pi.blockCnt}"> << </a> 
 		</c:if>
 		<c:forEach begin="${pi.sBlock}" end="${pi.eBlock}" var="i">
 			<c:if test="${i eq pi.page}">

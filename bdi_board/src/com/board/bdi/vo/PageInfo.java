@@ -1,17 +1,17 @@
 package com.board.bdi.vo;
 
 public class PageInfo {
-	private Integer page = 1;		//
-	private Integer rowCnt = 10;	//
-	private Integer blockCnt = 10;	//
-	private Integer totalCnt;		//
-	private Integer limitFNum = 0;	// First
-	private Integer limitLNum = 10;	// Last
+	private Integer page = 1;		
+	private Integer rowCnt = 10;	// 1 페이지에 보여질 게시물 수
+	private Integer blockCnt = 10;	// 1 페이지에 보여질 블락 수
+	private Integer totalCnt;		// 총 게시물 수
+	private Integer limitFNum = 0;	// 현재 보여질 게시물 시작
+	private Integer limitLNum = 10;	// 현재 보여질 게시물 시작부터 보여질 게시물 수
 
-	private Integer totalPage;
-	private Integer totalBlock;
-	private Integer sBlock;		// start
-	private Integer eBlock;		// end 
+	private Integer totalPage; 		// 총 페이지 수
+	private Integer totalBlock;		// 총 블락 수
+	private Integer sBlock;			// 시작 블락
+	private Integer eBlock;			// 끝 블락
 	
 	public Integer getPage() {
 		return page;
@@ -97,12 +97,22 @@ public class PageInfo {
 		if(totalCnt==null) {
 			//TODO 에러처리필요
 		}
-		totalPage = (int)(Math.ceil((double)totalCnt/rowCnt));
-		totalBlock = (int)(Math.ceil((double)totalPage/blockCnt));
+		// 게시물이 1003개이면
+		// totalPage = 101
+		// totalblock = 10
+		// 현재 page가 101이면
+		// limitFnum = 1000 //1000번째 게시물부터보임
+		// sBlock = 101
+		// eBlock = 110
+		// if(eBlock>totalPage) { 	// (110>101)
+		//	eBlock = totalPage; 	// eBlock = 101	
+		//}
+		totalPage = (int)(Math.ceil((double)totalCnt/rowCnt)); // 총 페이지 수 
+		totalBlock = (int)(Math.ceil((double)totalPage/blockCnt)); // 총 블락 수
 		limitFNum = (page-1) * rowCnt;
-		sBlock = ((int)(Math.ceil((double)page/blockCnt))-1) * 10 +1;
-		eBlock = sBlock + blockCnt-1;
-		if(eBlock>totalPage) {
+		sBlock = ((int)(Math.ceil((double)page/blockCnt))-1) * 10 +1; // 블락 시작
+		eBlock = sBlock + blockCnt-1; // 블락 끝
+		if(eBlock>totalPage) { // 끝 블락이 총 페이지 수 보다 크면
 			eBlock = totalPage;
 		}
 	}
